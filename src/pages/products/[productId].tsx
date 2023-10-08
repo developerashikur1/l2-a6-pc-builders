@@ -3,6 +3,7 @@ import Image from "next/image";
 import { IProduct } from "..";
 
 const ProductDetails = ({ result }: { result: IProduct }) => {
+  // console.log(result , 'from console');
   return (
     <div className="container mx-auto py-8">
       <div className="grid grid-cols-2 gap-8">
@@ -51,7 +52,8 @@ const ProductDetails = ({ result }: { result: IProduct }) => {
 export default ProductDetails;
 
 export const getStaticPaths = async () => {
-  const res = await fetch(`${process.env.BASE_URL}/api/products`);
+  //   const res = await fetch(`${process.env.BASE_URL}/api/products`);
+  const res = await fetch(`${process.env.BASE_URL}/products`);
   const data = await res.json();
 
   const paths = data.map((product: IProduct) => {
@@ -72,8 +74,10 @@ export const getStaticProps: GetStaticProps<{
   const productId = context?.params?.productId;
   try {
     const res = await fetch(
-      `${process.env.BASE_URL}/api/products/${productId}`
+      //   `${process.env.BASE_URL}/api/products/${productId}`
+      `${process.env.BASE_URL}/products/${productId}`
     );
+    console.log(res, "res from product id");
     const result = await res.json();
     return { props: { result } };
   } catch (error) {

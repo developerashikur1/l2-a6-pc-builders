@@ -22,6 +22,7 @@ async function run(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === "GET") {
       // Process a POST request
       const data = await productCollection.find().toArray();
+      console.log(data, 'next data from database')
       res.send(data);
     } else {
       // Handle any other HTTP method
