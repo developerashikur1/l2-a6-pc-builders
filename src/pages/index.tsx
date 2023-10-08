@@ -43,8 +43,7 @@ export type IProduct = {
 export const getStaticProps: GetStaticProps<{
   result: IProduct[];
 }> = async () => {
-//   const res = await fetch(`${process.env.BASE_URL}/api/products`);
-  const res = await fetch(`${process.env.BASE_URL}/products`);
+  const res = await fetch(`${process.env.BASE_URL}/api/products`);
   const result = await res.json();
   return { props: { result } };
 };
